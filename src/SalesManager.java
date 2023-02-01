@@ -16,10 +16,21 @@ public class SalesManager {
     }
 
     public long average() {
+        long max = -1;
         long sum = 0;
+        long min = 0;
         for (long sale : sales) {
-            sum =+ sale;
+            if (sale > max) {
+                max = sale;
+                sum += sale;
+            }
+
+            if (min == 0) {
+                min = sale;
+            } else if (sale < min) {
+                min = sale;
+            }
         }
-        return sum / sales.length;
+        return (sum - min - max) / (sales.length - 2);
     }
 }
